@@ -1,50 +1,41 @@
-"""
-Question
-
-Write a Python program to create a simple ATM system. The program should ask the
-user to enter a PIN. If the PIN is correct, display options to check balance, deposit
-money, or withdraw money. If the PIN is incorrect, display ‘Invalid PIN’. While
-withdrawing, the program should check whether the account has sufficient balance.
-Bonus (optional ):
-Display ‘Insufficient Balance’ if the withdrawal amount is greater than the
-available balance
-"""
-
-correct_pin = '1234'
+correct_pin = 1234
 balance = 5000
 
-user_pin = input('Enter your PIN: ')
+try:
+        user_pin = int(input('Enter your PIN: '))
+except ValueError :
+        print('Enter a valid pin')
+        exit()
 
 if user_pin == correct_pin:
         print('PIN Correct')
         print('Option: A = Balance')
         print('Option: B = Deposit')
         print('Option: C = Withdraw')
-        
-        Option = input('Enter option: ')
-        
+        Option = input('Enter option: ').upper()
         if Option == "A":
-            print('Your balance is: RS.' + str(balance))
+            print('Your balance is: RS.',balance)
             
         elif Option == "B":
             amount = int(input('Deposit Amount: '))
-            balance = balance + amount
-            print('Current Balance: ' + str(balance))
+            balance += amount
+            print('Current Balance: ',balance)
             
         elif Option == "C":
             amount = int(input('Enter withdrawal amount: '))
             
             if amount > balance:
-                print('sInadequate Balance')
+                print('Inadequate Balance')
             else:
                 balance = balance - amount
                 print('Please take your cash.')
-                print('Remaining balance is: RS.' + str(balance))
+                print('Remaining balance is: RS.',balance)
                 
         else:
-            print("Error")
-            print('Invalid Pin!!!')
+            print('Enter a valid option')
+            print('Retry')
 
 else:
-        print('Wrong PIN')
-        print('Retry!!!')
+        print("Error")
+        print('Invalid Pin!!!')
+
